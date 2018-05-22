@@ -1,14 +1,14 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: mongoutil-mongodump
+  name: mongoutil-mongorestore
 spec:
   template:
     spec:
       containers:
-      - name: mongoutil-mongodump
+      - name: mongoutil-mongorestore
         image: bitnami/mongodb
-        command: ["mongodump", "--host", "mongodb-mongodb", "--password",  "password", "--out", "--verbose", "/dump"]
+        command: ["mongorestore", "--host", "mongodb-mongodb", "--password",  "password", "--verbose", "/dump"]
         volumeMounts:
         - mountPath: "/dump"
           name: mongodump
