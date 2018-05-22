@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mongoutil-mongodump
+spec:
+  template:
+    spec:
+      containers:
+      - name: mongoutil-mongodump
+        image: bitnami/mongodb
+        command: ["mongodump", "--host", "mongodb-mongodb", "--password",  "password", "--out", "/dump"]
+        volumeMounts:
+        - mountPath: "/dump"
+          name: mongodump
+      volumes:
+      - name: mongodump
+        persistentVolumeClaim:
+          claimName: mongoutil-mongodump
+      restartPolicy: Never
+  backoffLimit: 4
