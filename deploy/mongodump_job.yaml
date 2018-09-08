@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: mongoutil-mongodump
+  namespace: kube-system
 spec:
   template:
     spec:
